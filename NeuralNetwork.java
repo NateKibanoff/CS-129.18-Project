@@ -49,18 +49,6 @@ public class NeuralNetwork{
 		if(x>0) return 1;
 		return 0;
 	}
-	/*public void clearWeights(){
-		weightList=new ArrayList<Weights>();
-	}
-	public Weights[] getWeights(){
-		Weights[] w=new Weights[weightList.size()];
-		for(int i=0;i<w.length;i++) w[i]=weightList.get(i);
-		return w;
-	}
-	public void setWeights(Weights[] w){ 
-		clearWeights();
-		for(int i=0;i<w.length;i++) weightList.add(w[i]);
-	}*/
 	public double[] feedForward(double[][] input,double[][] output,int[] topology,boolean[] isSigmoid,Weights[] w){
 		//parameters are: input values, output values, topologies for each layer, activation functions, and array of weights for each pair of consecutive layer
 		//input and output are represented as 2D arrays both having one row. This is because the matrix multiplication method only accepts two 2D arrays as parameters
@@ -94,7 +82,7 @@ public class NeuralNetwork{
 				System.out.println();
 			}
 		}
-		for(int i=0;i<error.length;i++) error[i]=Math.pow(output[0][i]-hidden[0][i],2); //error function
+		for(int i=0;i<error.length;i++) error[i]=0.5*Math.pow(output[0][i]-hidden[0][i],2); //error function
 		return error; //returns errors for current datapoint
 	}
 	public Weights[] backProp(double[] error,boolean[] isSigmoid){ //takes errors and activation functions from previous feed forward
@@ -168,12 +156,5 @@ public class NeuralNetwork{
 		System.out.println(what[0]);
 		System.out.println(what[1]);
 		System.out.println(what[2]);
-		// for(int i=0;i<50;i++){
-			// double error=0;
-			// for(int j=0;j<what.length;j++) error+=what[j];
-			// System.out.println(error);
-			// Weights[] anuna=nn.backProp(what,act);
-			// what=nn.feedForward(in,out,top,act,anuna);
-		// }
 	}
 }
